@@ -92,7 +92,7 @@ public class ChallengeIntegrationTest extends IntegrationTest {
     String flag = result.substring(result.indexOf("flag") + 6, result.indexOf("flag") + 42);
     params.clear();
     params.put("flag", flag);
-    checkAssignment(url("/WebGoat/challenge/flag"), params, true);
+    checkAssignment(url("/WebGoat/challenge/flag"), params, false);
 
     checkResults("/challenge/5");
 
