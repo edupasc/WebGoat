@@ -32,7 +32,7 @@ first thing that all hackers claim.*
 
 # Installation instructions:
 
-For more details chek [the Contribution guide](/CONTRIBUTING.md)
+For more details check [the Contribution guide](/CONTRIBUTING.md)
 
 ## 1. Run using Docker
 
