@@ -91,6 +91,11 @@ public class ProfileUploadRetrieval extends AssignmentEndpoint {
       var catPicture =
           new File(catPicturesDirectory, (id == null ? RandomUtils.nextInt(1, 11) : id) + ".jpg");
 
+      String canonicalPath = catPicture.getCanonicalPath();
+      if(!canonicalPath.startsWith(catPicturesDirectory.getCanonicalPath())){
+          throw new IOException("Entry is outside of the target directory");
+      }
+
       if (catPicture.getName().toLowerCase().contains("path-traversal-secret.jpg")) {
         return ResponseEntity.ok()
             .contentType(MediaType.parseMediaType(MediaType.IMAGE_JPEG_VALUE))
@@ -107,6 +112,7 @@ public class ProfileUploadRetrieval extends AssignmentEndpoint {
           .body(
               StringUtils.arrayToCommaDelimitedString(catPicture.getParentFile().listFiles())
                   .getBytes());
+
     } catch (IOException | URISyntaxException e) {
       log.error("Image not found", e);
     }
